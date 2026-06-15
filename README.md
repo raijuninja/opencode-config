@@ -18,13 +18,13 @@ Global opencode configuration and agent skills for personal and work Obsidian va
 ## Updating obsidian-skills
 
 ```bash
-rm -rf ~/.opencode/skills/obsidian-skills
-git clone https://github.com/kepano/obsidian-skills.git ~/.opencode/skills/obsidian-skills
-rm -rf ~/.opencode/skills/obsidian-skills/.git
+rm -rf ~/.config/opencode/skills/obsidian-skills
+git clone https://github.com/kepano/obsidian-skills.git ~/.config/opencode/skills/obsidian-skills
+rm -rf ~/.config/opencode/skills/obsidian-skills/.git
 ```
 
 ## Cloning on a New Machine
 
 ```bash
-git clone git@github.com:YOUR_USERNAME/YOUR_REPO.git ~/.opencode
+git clone git@github.com:raijuninja/opencode-config.git ~/.config/opencode
 ```
