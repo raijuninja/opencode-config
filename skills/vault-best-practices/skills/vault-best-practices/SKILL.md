@@ -1,6 +1,6 @@
 ---
 name: vault-best-practices
-description: Shared vault maintenance and improvement patterns. Use when updating vault conventions, capturing project knowledge, archiving projects, maintaining skills, or performing vault health checks. Works across personal and work vaults.
+description: Shared vault maintenance and improvement patterns. Use when capturing project knowledge, archiving projects, maintaining skills, or performing vault health checks. Works across personal and work vaults.
 ---
 
 # Vault Best Practices
@@ -9,75 +9,13 @@ Shared patterns for maintaining and improving Obsidian vaults using the AI agent
 
 ## When to Use This Skill
 
-- Updating vault-wide conventions (naming, frontmatter, types)
 - Capturing knowledge from completed projects
 - Archiving or reorganizing projects
 - Creating, updating, or deprecating skills
 - Performing vault health audits
 - Identifying patterns that should become new skills
 
-## Shared Note Architecture
-
-### Canonical Note Types
-
-| Type | Purpose | Location |
-|------|---------|----------|
-| `topic` | Notes you write and maintain — your thinking, domain knowledge | Vault root (flat) |
-| `subtopic` | Specific aspect of a parent topic | Vault root (flat) |
-| `project` | Time-bound work with a start and end | `Projects/` folder |
-| `resource` | External reference material you did NOT write | `Resources/` or next to topics |
-| `person` | Contact notes | Vault root or domain folder |
-| `moc` | Map of Content — navigation hub | Vault root |
-| `inbox-item` | Quick captures awaiting processing | `+/` folder |
-| `weekly-review` | Weekly planning and reflection | Reviews folder |
-| `monthly-review` | Monthly retrospective | Reviews folder |
-| `journal` | Daily notes | Daily notes folder |
-
-### Navigation Pattern
-
-All notes use the `up:` frontmatter field for navigation and discovery:
-- `up:` is an **array of wikilinks** pointing to parent note(s)
-- Topics: `up: ["[[MOC Name]]"]`
-- Subtopics: `up: ["[[Parent Topic]]"]`
-- Projects: `up: ["[[MOC Name]]"]` (points to relevant MOC)
-- Notes can appear in multiple MOCs via multiple `up:` values
-- **Never** point `up:` directly to a pillar or top-level category (except MOCs)
-
-### Discovery Queries
-
-Dataview queries use `contains(up, this.file.link)` to find child notes:
-
-```dataview
-TABLE status, dateformat(file.mtime, "yyyy-MM-dd") as "Modified"
-FROM ""
-WHERE type = "topic" AND contains(up, this.file.link)
-SORT file.name ASC
-```
-
-## Frontmatter Standards
-
-### Required Fields
-
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `type` | string | Always | Canonical type value (see table above) |
-| `up` | array | Most notes | Parent navigation links |
-| `status` | string | Projects, topics | Current state |
-| `created` | date | Always | Creation date (YYYY-MM-DD) |
-| `last_reviewed` | date | Projects, topics | Last review date |
-
-### Optional Fields
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `priority` | string | Project priority |
-| `due_date` | date | Project deadline |
-| `references` | array | Related internal note links |
-| `tags` | array | Searchable labels |
-
-### Deprecated Fields
-
-Do NOT use: `resources` (use inline linking), `area`, `department`, `partner`, `note`, `area-folder`, `area-note`, `project-task`
+> Note types, frontmatter standards, and naming conventions are covered by the vault-level `note-creation` skill in `.opencode/skills/`.
 
 ## Naming Conventions
 
@@ -206,8 +144,6 @@ Some patterns are vault-specific and should NOT be shared:
 ### Patterns That Are Shared
 
 These patterns are shared across vaults:
-- Note types and frontmatter standards
-- Navigation pattern (`up:` field)
 - Project lifecycle (create, active, complete, archive)
 - Knowledge capture workflow
 - Skill maintenance process
