@@ -62,6 +62,34 @@ When a project is completed or the user says "knowledge capture" or "wrap this p
 
 For each confirmed item, create notes using the appropriate template. Link back to the project note with `> [!info] Extracted from project: [[Project Name]]`.
 
+## Inbox Processing
+
+When the user says "process my inbox" or "process all inbox items", read all items in the inbox folder (`+/` for personal vault), determine the appropriate note type for each, create notes, and delete the processed inbox items.
+
+### Processing Rules
+
+1. **Read all inbox items** — Files in `+/` with `type: inbox-item`
+2. **Prevent duplicates** — Before creating, search vault for existing notes on the same subject. If a topic already exists, append inbox content to the existing note's Notes section instead of creating a duplicate
+3. **Classify each item**:
+   - New topic → create at vault root, `type: topic`, `up:` to most relevant MOC
+   - New subtopic → create at vault root, `type: subtopic`, `up:` to parent topic
+   - New person → create at vault root, `type: topic`, `person` tag
+   - Resource → save to `Resources/`, `type: resource`
+   - Discard → already done, duplicate content, or no longer relevant
+4. **Create notes using templates** — Always use the canonical template (see `note-creation` skill)
+5. **Delete processed items** — Remove the inbox file from `+/` after successfully creating the note or confirming discard
+6. **Report** — Summarize what was created and discarded
+
+### Workflow
+
+```
+User: "process my inbox"
+  → Agent lists all inbox items with proposed destinations
+  → User confirms or adjusts
+  → Agent creates notes, deletes processed items
+  → Agent reports: "Created X topics, Y subtopics. Discarded N items."
+```
+
 ## Skill Maintenance
 
 ### When to Create a New Skill
