@@ -14,6 +14,7 @@ Shared patterns for maintaining and improving Obsidian vaults using the AI agent
 - Creating, updating, or deprecating skills
 - Performing vault health audits
 - Identifying patterns that should become new skills
+- **Starting a session** — pull latest global skills: `cd ~/.config/opencode && git pull`
 
 > Note types, frontmatter standards, and naming conventions are covered by the vault-level `note-creation` skill in `.opencode/skills/`.
 
