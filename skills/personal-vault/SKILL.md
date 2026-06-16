@@ -46,7 +46,27 @@ This vault (Gunslinger) and the work vault (AI Kim) share conventions via the `v
 - **Personal only:** Pillar system, Captain's Log, Nimbus board, focus cascade, Brittish sync, meal planning
 - **Work only:** WCCUSD workflows, Google Drive sync, partner management, multi-project programs
 
-### Syncing Agent Rules
+### Agent Shared Notes
+
+Notes with `shared: true` frontmatter sync bidirectionally between personal and work vaults via `work-sync` (`SYSTEM/Scripts/work-sync/`). Only runs on the Windows work machine where both vaults are local.
+
+On macOS/Linux Omarchy: edit `shared: true` notes here as source-of-truth. Sync catches up next time you're on the work machine.
+
+Notes with `brittish: true` sync to the Brittish vault via `brittish-sync` (separate system).
+
+## Expected Notes
+
+These notes should exist in this vault. Verify on session start, create if missing:
+
+| Note | Type | Purpose |
+|------|------|---------|
+| `🗺️ Agent System.md` | MOC | Agent infrastructure hub |
+| `Agent System Architecture.md` | Topic | Full architecture explainer |
+| `+ Vault Setup.md` | Topic | Onboarding checklist |
+
+Content patterns are defined in `vault-best-practices` → Agent System Documentation.
+
+## Syncing Agent Rules
 
 When working in this vault, check that `AGENTS.md` includes the shared rules from `vault-best-practices` (see its Agent Rules section). If any shared rules are missing, add them. The current shared minimum is:
 

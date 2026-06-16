@@ -100,6 +100,42 @@ User: "process my inbox"
   → Agent reports: "Created X topics, Y subtopics. Discarded N items."
 ```
 
+## Agent Shared Sync
+
+Notes with `shared: true` frontmatter sync bidirectionally between personal (Gunslinger) and work (AI Kim) vaults via `work-sync` (`SYSTEM/Scripts/work-sync/`). Separate from `brittish: true` (Brittish vault sync).
+
+- **Syncs only on the work machine** where both vaults are local
+- **On macOS/Omarchy**: edit `shared: true` notes as source-of-truth; sync catches up later
+- **Conflict resolution**: newest-wins
+- **State manifest**: `.work-sync-state.json` (auto-generated)
+
+## Agent System Documentation
+
+Each vault should maintain documentation for the agent harness. Verify on session start.
+
+### Expected Notes (both vaults)
+
+| Note | Type | Content |
+|------|------|---------|
+| `🗺️ Agent System.md` | MOC | Dataview listing of agent-related topics |
+| `Agent System Architecture.md` | Topic | Full architecture: skills, prompts, rules propagation, machine context, shared vs vault-specific patterns |
+
+### Minimum Sections (architecture note)
+
+- Skill locations (global vs vault-local, sync methods)
+- How rules propagate across vaults
+- Machine context model
+- Shared vs vault-specific patterns
+- Session startup flow
+- Agent Shared Sync (`shared: true` workflow)
+
+### Agent Check (session start)
+
+1. Verify `🗺️ Agent System.md` exists with correct type and structure
+2. Verify `Agent System Architecture.md` exists with minimum sections
+3. If notes exist in work vault with different names, adapt — content pattern matters, not filenames
+4. On work machine: verify `Agent System Architecture.md` has `shared: true` for bidirectional sync
+
 ## Skill Maintenance
 
 ### When to Create a New Skill
