@@ -145,3 +145,30 @@ Emoji-free filenames for ALL new notes. Legacy existing content may retain emoji
 - Quick Creator unified entry point for note creation
 - Context Actions menu on each note for type-appropriate actions
 - WCCUSD dashboard refresh via dashboard button
+
+## How Rules Sync Across Vaults
+
+This vault (AI Kim) and the personal vault (Gunslinger) share conventions via the `vault-best-practices` global skill. When that skill is updated on either machine, the other vault picks up the changes on its next session (via `git pull`).
+
+### What's Shared (propagated automatically)
+
+- Note types, frontmatter standards, naming conventions
+- Project lifecycle (create, active, capture, close)
+- Knowledge capture workflow, inbox processing
+- Skill maintenance process
+- Emoji-free new content policy
+
+### What's Vault-Specific (stays local)
+
+- **Work only:** WCCUSD workflows, Google Drive sync, partner management, multi-project programs, `type: person`, pre-work scans, project status reviews
+- **Personal only:** Pillar system, Captain's Log, Nimbus board, focus cascade, Brittish sync, meal planning
+
+### Syncing Agent Rules
+
+When working in this vault, check that `AGENTS.md` includes the shared rules from `vault-best-practices` (see its Agent Rules section). If any shared rules are missing, add them. The current shared minimum is:
+
+- Knowledge capture before project closure
+- Pull global skills at session start (`cd ~/.config/opencode && git pull`)
+- Always use templates for note creation
+- Check for existing notes before creating duplicates
+- Ask before restructuring
