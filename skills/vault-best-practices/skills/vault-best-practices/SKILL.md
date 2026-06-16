@@ -38,20 +38,29 @@ Shared patterns for maintaining and improving Obsidian vaults using the AI agent
 - Use `last_reviewed` to track when project was last touched
 - Update `status` as work progresses
 
-### Completion
-1. Set `status: Complete`
-2. Set `completed` date
-3. Run knowledge capture (see below)
-4. Optionally archive
+### Closing a Project
 
-### Archiving
-1. Set `status: Archived`
-2. Move project folder to `Projects/_Archive/`
-3. Update any references in other notes
+**Knowledge capture is REQUIRED before closing any project.** The point of closure depends on vault:
+
+| Vault | Closure point | Capture trigger | Status after capture |
+|-------|--------------|-----------------|----------------------|
+| Personal | Archive | At archive time | `🗄️ Archived` → move to `_Archive/` |
+| Work | Complete | At complete time | `🟢 Complete` → stays in `Projects/` for review |
+
+**Universal steps:**
+1. **Capture knowledge** (see Knowledge Capture Workflow below) — extract learnings into topics/subtopics
+2. Set `status` based on vault closure point
+3. Set `completed` date
+4. Update `last_reviewed`
+5. Personal only: move to `_Archive/`
+
+**Never close a project without completing knowledge capture first.**
 
 ## Knowledge Capture Workflow
 
-When a project is completed or the user says "knowledge capture" or "wrap this project":
+**Always run before closing a project** (archive in personal, complete in work). Also run on demand when the user says "knowledge capture" or "wrap this project".
+
+When triggered:
 
 1. **Review project files** — Read the project note and any attached files
 2. **Identify new topics** — Any new technology, concept, or domain encountered?
@@ -172,7 +181,7 @@ Some patterns are vault-specific and should NOT be shared:
 ### Patterns That Are Shared
 
 These patterns are shared across vaults:
-- Project lifecycle (create, active, complete, archive)
+- Project lifecycle (create, active, capture, close)
 - Knowledge capture workflow
 - Skill maintenance process
 - Naming conventions
@@ -188,3 +197,4 @@ These patterns are shared across vaults:
 5. **Update skills on convention changes** — When a convention changes, update this skill
 6. **Keep notes under 200 lines** — Split large notes into topic + subtopics
 7. **Inline resource linking** — Link external resources inline, don't create standalone resource notes
+8. **Capture knowledge before closing** — Never archive or complete a project without first extracting learnings into topics/subtopics

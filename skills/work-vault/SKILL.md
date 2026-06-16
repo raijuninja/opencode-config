@@ -108,14 +108,29 @@ Before starting project work, search vault for existing topics, subtopics, peopl
 
 ### Knowledge Capture
 
-When the user says "knowledge capture" or "wrap this project", prompt about:
+**Captured at project completion time** (before boss review). When the user says "knowledge capture" or "wrap this project", or when closing a project:
+
 - New topics encountered
 - New subtopics
 - New people/partners
 - Resources to save
 - Existing notes to update
 
-Create notes using templates.
+Create notes using templates. Link back to the project note with `> [!info] Extracted from project: [[Project Name]]`. Add spawned notes to the project's `references:` array so they appear in the Dataview below.
+
+### Completed Projects — Spawned Knowledge
+
+Use this query on completed projects to review what was learned:
+
+```dataview
+TABLE WITHOUT ID
+  file.link as "Project",
+  dateformat(completed, "MMM dd") as "Completed",
+  references as "Knowledge Spawned"
+FROM "WCCUSD/Projects"
+WHERE type = "project" AND status = "🟢 Complete"
+SORT completed DESC
+```
 
 ### Project Status Review
 
