@@ -5,39 +5,40 @@ description: AI Kim work vault conventions — WCCUSD workflows, Google Drive sy
 
 # Work Vault — AI Kim
 
-Vault-specific conventions for the work knowledge management vault. Supplements the shared `vault-best-practices` skill.
+Vault-specific conventions for the work knowledge management vault. The vault is a standalone Google Drive vault at `~/gdrive` (rclone mount). Supplements the shared `vault-best-practices` skill.
 
 ## Vault Structure
 
 ```
-WCCUSD/                        # Work vault root
-├── [Topics].md                # Flat topic notes
-├── [ParentTopic Subtopic].md  # Flat subtopic notes
-├── +/                         # Work inbox
-├── Projects/                  # WCCUSD project folders
-│   └── _Archive/              # Archived projects
-├── Resources/                 # Reference material
-├── Review/                    # Weekly reviews
-└── SYSTEM/                    # Vault infrastructure
+AI Kim/                          # Work vault root (standalone, rclone mounted)
+├── [Topics].md                  # Flat topic notes
+├── [ParentTopic Subtopic].md    # Flat subtopic notes
+├── +/                           # Work inbox
+├── Projects/                    # WCCUSD project folders
+│   └── _Archive/                # Archived projects
+├── Resources/                   # Reference material
+├── Weekly Reviews/              # Weekly reviews
+└── System/                      # Vault infrastructure
 ```
 
 ### Key Conventions
 
-- Topics/subtopics are FLAT in `WCCUSD/` root, never nested in subfolders
+- Topics/subtopics are FLAT in vault root, never nested in subfolders
 - Subtopics named `ParentTopic Subtopic` (no dash)
 - `_*` folders are special (archive, summer, tools) — never manually move files into them
+- Vault is a standalone Google Drive vault mounted via rclone at `~/gdrive`
 
 ## Note Types
 
 | Type | Location | Description |
 |------|----------|-------------|
-| `topic` | `WCCUSD/` root | Your notes on a subject |
-| `subtopic` | `WCCUSD/` root | Specific aspect of a parent topic |
-| `project` | `WCCUSD/Projects/` | Time-bound work |
-| `person` | `WCCUSD/` root | Contact notes (`up: [[Contacts]]`) |
-| `resource` | `WCCUSD/Resources/` | External reference material |
-| `inbox-item` | `WCCUSD/+/` | Quick capture |
-| `weekly-review` | `WCCUSD/Review/` | Weekly planning |
+| `topic` | vault root | Your notes on a subject |
+| `subtopic` | vault root | Specific aspect of a parent topic |
+| `project` | `Projects/` | Time-bound work |
+| `person` | vault root | Contact notes (`up: [[Contacts]]`) |
+| `resource` | `Resources/` | External reference material |
+| `inbox-item` | `+/` | Quick capture |
+| `weekly-review` | `Weekly Reviews/` | Weekly planning |
 
 ### Person Template Conventions
 
@@ -89,7 +90,9 @@ Projects with `🗄️ Archived` status get moved to `_Archive/` folder.
 
 ## Google Drive Sync
 
-Drive sync fields on notes:
+The vault is a standalone Google Drive vault mounted via rclone at `~/gdrive`. There is no separate sync mechanism — the vault IS the Drive.
+
+Drive sync fields on notes (legacy, auto-managed by sync scripts):
 
 ```yaml
 gdrive_id_wccusd: xyz789
@@ -97,8 +100,6 @@ gdrive_url_wccusd: https://docs.google.com/...
 last_synced_wccusd: '2026-02-05T...'
 sync_hash_wccusd: ghi012
 ```
-
-Sync managed externally via AI Kim scripts. WCCUSD Google Drive sync is NOT managed in Gunslinger.
 
 ## Workflows
 
@@ -127,7 +128,7 @@ TABLE WITHOUT ID
   file.link as "Project",
   dateformat(completed, "MMM dd") as "Completed",
   references as "Knowledge Spawned"
-FROM "WCCUSD/Projects"
+FROM "Projects"
 WHERE type = "project" AND status = "🟢 Complete"
 SORT completed DESC
 ```
@@ -147,6 +148,11 @@ Emoji-free filenames for ALL new notes. Legacy existing content may retain emoji
 - WCCUSD dashboard refresh via dashboard button
 
 ## How Rules Sync Across Vaults
+
+## Vault Location
+
+- **WSL (Linux):** `~/gdrive` (rclone Google Drive mount)
+- **Work (Windows):** `G:\Shared drives\AI Kim` (Google Drive desktop app)
 
 This vault (AI Kim) and the personal vault (Gunslinger) share conventions via the `vault-best-practices` global skill. When that skill is updated on either machine, the other vault picks up the changes on its next session (via `git pull`).
 

@@ -74,7 +74,7 @@ For each confirmed item, create notes using the appropriate template. Link back 
 
 ## Inbox Processing
 
-When the user says "process my inbox" or "process all inbox items", read all items in the inbox folder (`+/` for personal vault), determine the appropriate note type for each, create notes, and delete the processed inbox items.
+When the user says "process my inbox", "process +", or similar, read all items in the inbox folder (`+/` for work vault, `+Inbox/` for personal vault), determine the appropriate note type for each, create notes, and delete the processed inbox files. The inbox folder should be empty after processing (only the dashboard file remains). Delete all processed files including non-markdown files (PDFs, zips, shortcuts, etc.) that were handled during processing.
 
 ### Processing Rules
 
